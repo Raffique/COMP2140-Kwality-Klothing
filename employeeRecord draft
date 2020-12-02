@@ -1,0 +1,79 @@
+package;
+/** @author devinn
+  * @version 1.0
+*/
+
+import numpy as np
+import pandas as pd
+
+class Employee:
+
+        def __init__(self, fName, lName, idNum, addr, phNum, trnNum):
+            self.fName= fName
+            self.lName= lName
+            self.idNum= idNum
+            self.addr= addr
+            self.phNum= phNum
+            self.trnNum= trnNum
+
+        def getfName():
+            return self.fName
+
+        def getlName():
+            return self.lName
+
+        def getIdNum():
+            return self.idNum
+
+        def getTrnNum():
+            return self.trnNum
+
+        def getAddr():
+            return self.addr
+
+        def getphNum():
+            return self.phNum
+
+
+        def printEmployee():
+            prin= "Employee Name:" + "" +getfName() + "" +getlName() + "" + "Address:" + "" +getAddr() + "" + "ID Number:" + "" +getIdNum() + "" + "Phone Number" + "" + +getphNum() + "" + "TRN:" + "" +getTrnNum()
+
+
+def main():
+    first= str(input('Please enter customers first name'))
+    fcheck= isinstance(first, str)
+    while str(fcheck) != True:
+        first= str(input('Incorrect input detected. Please enter name again'))
+        fcheck= isinstance(first, str)
+    last= str(input('Please enter customers last name'))
+    lcheck= isinstance(last, str)
+    while str(lcheck) != True:
+        last= str(input('Incorrect input detected. Please enter name again'))
+        lcheck= isinstance(last, str)
+    address= str(input('Please enter customers address'))
+    acheck= address.isalpha()
+    while str(acheck) != True:
+        address= str(input('Incorrect input detected. Please enter address again'))
+        acheck= address.isalpha()
+    phone= str(input('Please enter customers phone number. Ensure its in the format (876)-***-****'))
+    pcheck= isinstance(phone, str)
+    while str(pcheck) != True:
+        phone= str(input('Incorrect input detected. Please enter name again'))
+        pcheck= isinstance(phone, str)
+    trn= int(input('Please enter customers width measurement'))
+    tcheck= trn.isdigit()
+    while tcheck != True:
+        trn= int(input('Incorrect input detected. Please enter width again. Remember it should be an integer'))
+        tcheck= isinstance(trn, str)
+    id= int(input('Please enter customers height measurement'))
+    icheck= id.isdigit()
+    while icheck != True:
+        id= int(input('Incorrect input detected. Please enter height again. Remember it should be an integer'))
+        icheck= id.isdigit()
+    bank= str(input('Please enter employees bank account number'))
+    bcheck= isinstance(bank, str)
+    while str(bcheck) != True:
+        bank= str(input('Incorrect input detected. Please enter name again'))
+        bcheck= isinstance(bank, str)
+
+    self.__init__(first, last, id, address, phone, trn, bank )
