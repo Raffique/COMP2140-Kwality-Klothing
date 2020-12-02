@@ -1,0 +1,46 @@
+import tkinter
+import os
+
+def manClick():
+    window.destroy()
+    new = tkinter.Tk()
+    new.title("Kwality Klothing Manager")
+    new.configure(background="cyan")
+    #label1= tkinter.Label(new, text= "Kwality Klothing Manager", bg= "cyan", font=("Arial Bold", 25)).pack()
+    label2= tkinter.Label(new, text="Manager ID Number:").grid(row=0)
+    tkinter.Entry(new).grid(row=0, column= 1)
+    label3= tkinter.Label(new, text="Manager Password:   ").grid(row=1)
+    tkinter.Entry(new).grid(row=1, column=1)
+    
+
+
+    new.mainloop()
+
+def empClick():
+    window.destroy()
+    new2 = tkinter.Tk()
+    new2.title("Kwality Klothing Employee")
+    new2.configure(background="cyan")
+    #label= tkinter.Label(new2, text= "Kwality Klothing Employee", bg= "cyan", font=("Arial Bold", 25)).pack()
+    label2= tkinter.Label(new2, text="Employee ID Number:").grid(row=0)
+    tkinter.Entry(new2).grid(row=0, column= 1)
+    label3= tkinter.Label(new2, text="Employee Password:   ").grid(row=1)
+    tkinter.Entry(new2).grid(row=1, column=1)
+
+    new2.mainloop()
+
+
+window= tkinter.Tk()
+window.title("Kwality Klothing")
+window.configure(background="cyan")
+
+
+##photo1 = PhotoImage(file="Kwality.png")
+label1= tkinter.Label(window, text= "Kwality Klothing", bg= "cyan", font=("Arial Bold", 50)).pack()
+
+label2= tkinter.Label(window, text="Please choose your correct profile (employee/manager):", bg= "gray", font="none 12 bold").pack()     
+
+employee= tkinter.Button(window, text="Employee", width= 10, command= empClick).pack()
+manager= tkinter.Button(window, text="Manager", width= 10, command= manClick).pack()
+
+window.mainloop()
