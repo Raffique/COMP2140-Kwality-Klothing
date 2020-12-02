@@ -8,7 +8,7 @@ import random
 import math
 import sys
 
-class KK():
+class userInterface():
     def __init__(self):
         pass
 
