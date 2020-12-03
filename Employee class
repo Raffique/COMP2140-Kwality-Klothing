@@ -1,0 +1,63 @@
+import pandas as pd
+pd.options.mode.chained_assignment = None  # default='warn'
+import os
+
+class Employee:
+    
+    def __init__(self):
+       self.init_db()
+        
+
+    def init_db(self):
+        if os.path.exists("EmployeeDB.xlsx"):
+            self.db = pd.read_excel("EmployeeDB.xlsx")
+        else:
+            df = pd.DataFrame({"ID":[], "Name":[], "DOB":[], "Age":[], "Start Date":[] })
+            
+            self.db = pd.ExcelWriter("EmployeeDB.xlsx", engine="xlsxwriter")
+            
+            df.to_excel(self.db, index=False)
+            self.db.save()
+            self.db = pd.read_excel("EmployeeDB.xlsx")
+            
+    
+    def autoSave(self):
+        temp = pd.ExcelWriter("EmployeeDB.xlsx", engine="xlsxwriter")
+        self.db.to_excel(temp, index=False)
+        temp.save()
+        self.db = pd.read_excel("EmployeeDB.xlsx")
+            
+    def createEmployee(self, name, dob, age, startDate):
+        
+        if self.db["ID"].max() != self.db["ID"].max():
+            new = pd.DataFrame({"ID":["KKS001"], "Name":[name], "DOB":[dob], "Age":[age], "Start Date":[startDate] })
+        else:
+            temp_num = int(self.db["ID"].max()[3:])
+            temp_word = ""
+            if len(self.db["ID"]) >= 99:
+                temp_word = "KKS"
+            elif len(self.db["ID"]) >= 9:
+                temp_word = "KKS0"
+            else:
+                temp_word = "KKS00"
+            new = pd.DataFrame({"ID":[temp_word+str(temp_num+1)], "Name":[name], "DOB":[dob], "Age":[age], "Start Date":[startDate] })
+        self.db = self.db.append(new, ignore_index=True)
+        
+        self.autoSave()
+        
+    def modEmployee(self, ID, query, data):
+        for m in range(len(self.db["ID"])):
+            if self.db["ID"][m] == ID:
+                self.db[query][m] = data
+                self.autoSave()
+                break
+    
+    def deleteEmployee(self, ID):
+        for m in range(len(self.db["ID"])):
+            if self.db["ID"][m] == ID:
+                self.db = self.db.drop(m, axis=0)
+                self.autoSave()
+                break
+    
+    def dictEmployee(self):
+        return self.db.to_dict()
