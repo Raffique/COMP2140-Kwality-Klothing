@@ -1,0 +1,40 @@
+class Product:
+    
+    average = 2
+    size = {"Fitted":[0.5], "Mid":[1.5], "Loose":[3]}
+    
+    shirt = (0,1,2,3, 9, 12)
+    formal_shirt = (0,1,2,3, 9, 10, 12, 13)
+    jacket = (0,1,2,3, 9, 10, 12, 13)
+    vest = (0,2,3,9,12)
+    sleeveless = (0,2,3, 9, 12)
+    tank_tops = (0,1,2,3, 12)
+    
+    formal_pants = (3,4,5,6,7,8,11,14)
+    pants = (3,4,5,6,7,8,11,14)
+    shorts_medium = (3,4,5,6,11,14)
+    shorts_small = (3,4,5,11,14)
+    
+    skirt_long = (3,4,11,14)
+    skirt_medium = (3,4,11,14)
+    skirt_small = (3,4,11,14)
+    
+    dress_sleeveless = (0,2,3, 9, 12,3,4,11)
+    dress_short_sleeve = (0,1,2,9,12,3,4,11)
+    dress_long_sleeve  = (0,1,2,3, 9, 10,12,13,11)
+    
+    clothes = (shirt, formal_shirt, jacket, vest, sleeveless, tank_tops, formal_pants, pants, shorts_medium, \
+               shorts_small, skirt_long, skirt_medium, skirt_small, dress_sleeveless, dress_short_sleeve, dress_long_sleeve)
+    
+    def __init__(self):
+        pass
+ 
+        
+    def makeProduct(self, clientData, size, clothing):
+        new = []
+        quantity = 0
+        for m in clientData[1:]:
+            new += [m*Product.size[size]]
+        for n in Product.clothes[clothing]:
+            quantity += new[n] * Product.average
+        return quantity
